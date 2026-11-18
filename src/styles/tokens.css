@@ -1,0 +1,41 @@
+/* Design tokens — the only place colours, radii and shadows are defined.
+   Every rule elsewhere should reference these rather than hard-coding a value. */
+
+:root {
+  /* Type */
+  --font-body: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+
+  /* Text */
+  --ink: #0f1b33;        /* headings and body text */
+  --ink-soft: #4a5468;   /* supporting text */
+  --ink-faint: #868d9b;  /* placeholders, table headers */
+
+  /* Surfaces */
+  --paper: #f7f4ee;      /* page background */
+  --surface: #fffdf9;    /* cards, bars, inputs */
+  --line: #e6e0d4;       /* hairline borders */
+  --line-strong: #cfc6b5;/* emphasised borders, scrollbar thumb */
+
+  /* Navy — primary action colour */
+  --signal: #13254a;
+  --signal-strong: #0a1630;
+  --signal-wash: #e9ecf3; /* tinted navy background */
+  --signal-on: #f7f4ee;   /* text on navy */
+
+  /* Brass — accents and highlights */
+  --accent: #a8875a;
+
+  /* Overlay behind the video dialog */
+  --overlay: rgb(8 14 28 / 0.78);
+
+  /* Shape */
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 10px;
+  --container: 1200px; /* max content width */
+
+  /* Depth */
+  --shadow-sm: 0 1px 2px rgba(15, 27, 51, 0.05);
+  --shadow-md: 0 16px 36px -22px rgba(15, 27, 51, 0.45);
+  --shadow-lg: 0 28px 60px -24px rgba(15, 27, 51, 0.45);
+}

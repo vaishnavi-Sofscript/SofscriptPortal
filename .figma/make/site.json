@@ -1,0 +1,11 @@
+{
+  "title": "Sofscript Portal",
+  "description": "Provides a portal for users to access and manage the services and information available through the linked site.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

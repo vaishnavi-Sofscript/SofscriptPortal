@@ -1,0 +1,53 @@
+/* Refinement pass 1 — "luxury": restraint rather than ornament.
+   Ivory and navy, hairlines and space. Trades the card look of
+   components.css for a flat, edge-to-edge index. */
+
+.bar { background: var(--paper); }
+.bar-inner { height: 80px; }
+.mark { font-weight: 600; font-size: 19px; letter-spacing: -0.01em; }
+.mark span { color: var(--accent); font-weight: 400; }
+.avatar { background: var(--signal); color: var(--signal-on); }
+
+.hero { padding: 80px 0 32px; }
+.hero h1 { font-size: clamp(36px, 5vw, 60px); letter-spacing: -0.035em; }
+.hero p { color: var(--ink-soft); font-weight: 400; }
+
+/* The launcher becomes one ruled row, tiles divided by hairlines. */
+.launcher { gap: 0; margin-top: 48px; border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line-strong); }
+.app { border: 0; border-radius: 0; background: transparent; padding: 28px 24px; min-height: 220px; box-shadow: none; transition: background-color 240ms ease, color 240ms ease; }
+.app + .app { border-left: 1px solid var(--line); }
+.app:hover { transform: none; background: var(--signal); color: var(--signal-on); box-shadow: none; }
+.app:active { transform: none; background: var(--signal-strong); }
+.app-icon { width: 44px; height: 44px; border: 1px solid var(--line-strong); border-radius: 50%; background: transparent; color: var(--signal); transition: color 240ms ease, border-color 240ms ease; }
+.app:hover .app-icon { background: transparent; color: var(--signal-on); border-color: var(--accent); }
+.app-name { font-weight: 600; font-size: 17px; }
+.app-desc { transition: color 240ms ease; }
+.app:hover .app-desc { color: var(--line-strong); }
+.app-open { color: var(--accent); font-weight: 500; }
+
+.section { padding: 15px 0; }
+.section h2 { font-weight: 300; font-size: 32px; letter-spacing: -0.02em; }
+
+/* Search becomes a single underline. */
+.search input { border-radius: 0; border-width: 0 0 1px; background: transparent; padding-left: 30px; }
+.search svg { left: 4px; }
+.search input:hover { border-color: var(--ink); }
+
+.table { box-shadow: none; border-radius: 0; border-width: 1px 0; border-color: var(--line-strong); background: transparent; }
+.table th { font-weight: 500; color: var(--ink-faint); }
+.table tbody tr:hover { background: var(--surface); }
+.copy { color: var(--accent); }
+.copy:hover { background: var(--signal-wash); }
+
+.videos { gap: 0; border-top: 1px solid var(--line-strong); }
+.video { border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: transparent; padding: 22px 8px; transition: background-color 200ms ease; }
+.video:hover { transform: none; background: var(--surface); }
+.video-play { background: transparent; color: var(--signal); border: 1px solid var(--signal); }
+.video:hover .video-play { background: var(--signal); color: var(--signal-on); }
+.video-name { font-weight: 600; }
+
+.modal-box { border-radius: var(--radius-lg); }
+
+/* Stacked tiles divide top-to-bottom instead of left-to-right. */
+@media (max-width: 1024px) { .app + .app { border-left: 0; } .app { border-bottom: 1px solid var(--line); } }
+@media (prefers-reduced-motion: reduce) { .app, .app-icon, .app-desc, .video { transition: none; } }

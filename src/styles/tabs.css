@@ -1,0 +1,38 @@
+/* Refinement pass 2 — the tab bar, plus the spacing it needs around it.
+   Styled here as underlined tabs; refresh.css later turns them into pills. */
+
+.tabs-bar { position: relative; background: var(--paper); border-bottom: 1px solid var(--line-strong); }
+.tabs { display: flex; gap: 32px; overflow-x: auto; }
+
+/* Fade at the right edge hints that the tabs scroll sideways. */
+@media (max-width: 768px) {
+  .tabs-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 1px;
+    width: 28px;
+    background: linear-gradient(to right, transparent, var(--paper));
+    pointer-events: none;
+  }
+}
+
+.tab { position: relative; padding: 18px 0; border: 0; background: transparent; color: var(--ink-faint); font: inherit; font-size: 15px; font-weight: 500; white-space: nowrap; transition: color 200ms ease; }
+/* Underline grows from nothing when the tab is selected. */
+.tab::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--signal); transform: scaleX(0); transition: transform 240ms ease; }
+.tab:hover { color: var(--ink); }
+.tab[aria-selected='true'] { color: var(--signal); }
+.tab[aria-selected='true']::after { transform: scaleX(1); }
+.tab:focus-visible { outline: 3px solid var(--signal); outline-offset: 2px; }
+
+/* With a tab bar in place, sections no longer need their own top rule. */
+.section { border-top: 0; margin-top: 0;}
+.hero { padding: 56px 0 36px; }
+.apps-panel { padding-bottom: 56px; }
+
+/* Logo and wordmark sit side by side in the header. */
+.mark { display: flex; align-items: center; gap: 12px; }
+.logo { height: 36px; width: auto; }
+
+@media (prefers-reduced-motion: reduce) { .tab, .tab::after { transition: none; } }

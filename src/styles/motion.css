@@ -1,0 +1,59 @@
+/* Refinement pass 3 — motion: a quiet entrance and hover polish, nothing loud.
+   Every animation here is switched off by the reduced-motion block at the end. */
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scaleIn { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+@keyframes popIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* Page blocks rise in on load and on tab change. */
+.hero { animation: fadeUp 520ms ease both; animation-delay: 60ms; }
+.apps-panel { animation: fadeUp 420ms ease both; animation-delay: 60ms; }
+.section { animation: fadeUp 420ms ease both; }
+
+/* Launcher tiles pop in one after another. Delays are per position, so they
+   assume five tiles — extend the list if applications.tsx grows. */
+.app { animation: popIn 460ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+.app:nth-child(1) { animation-delay: 80ms; }
+.app:nth-child(2) { animation-delay: 140ms; }
+.app:nth-child(3) { animation-delay: 200ms; }
+.app:nth-child(4) { animation-delay: 260ms; }
+.app:nth-child(5) { animation-delay: 320ms; }
+.app-icon { transition: color 240ms ease, border-color 240ms ease, transform 220ms cubic-bezier(0.16, 1, 0.3, 1); }
+.app:hover .app-icon { transform: scale(1.08) rotate(-4deg); }
+.app-open { transition: gap 200ms ease; }
+.app:hover .app-open { gap: 9px; }
+
+/* Same staggered entrance for the six video rows. */
+.video { animation: popIn 460ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+.video:nth-child(1) { animation-delay: 80ms; }
+.video:nth-child(2) { animation-delay: 130ms; }
+.video:nth-child(3) { animation-delay: 180ms; }
+.video:nth-child(4) { animation-delay: 230ms; }
+.video:nth-child(5) { animation-delay: 280ms; }
+.video:nth-child(6) { animation-delay: 330ms; }
+.video-play { transition: background-color 200ms ease, color 200ms ease, transform 220ms cubic-bezier(0.16, 1, 0.3, 1); }
+.video:hover .video-play { transform: scale(1.1); }
+
+.table { animation: fadeUp 420ms ease both; animation-delay: 100ms; }
+.empty { animation: fadeIn 280ms ease both; }
+
+.tab { transition: color 200ms ease, transform 150ms ease; }
+.tab:active { transform: scale(0.96); }
+
+.copy { transition: background-color 160ms ease, transform 160ms ease; }
+.copy:hover { transform: scale(1.08); }
+.copy:active { transform: scale(0.92); }
+
+.modal { animation: fadeIn 200ms ease both; }
+.modal-box { animation: scaleIn 260ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+.modal-close { transition: background-color 160ms ease, transform 160ms ease; }
+.modal-close:hover { transform: rotate(90deg); }
+
+/* Respect the OS "reduce motion" setting: no entrances, no hover movement. */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; animation-delay: 0ms !important; }
+  .table, .launcher, .videos { scroll-behavior: auto; }
+  .tab, .copy, .modal-close, .app-icon, .video-play { transition: none; }
+  .tab:active, .copy:hover, .copy:active, .modal-close:hover, .app:hover .app-icon, .video:hover .video-play { transform: none; }
+}

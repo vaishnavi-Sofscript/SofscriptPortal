@@ -1,0 +1,83 @@
+/* Base look of each component. Later files in the import order refine these
+   (see styles/README.md) — this is the starting point, not the final result. */
+
+/* --- Header ---------------------------------------------------------------- */
+.bar { background: var(--surface); border-bottom: 1px solid var(--line); }
+.bar-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+.mark { font-weight: 700; font-size: 18px; color: var(--ink); }
+.mark span { color: var(--signal); }
+.user { display: flex; align-items: center; gap: 10px; color: var(--ink-soft); font-size: 15px; }
+.avatar { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--signal-wash); color: var(--signal); }
+
+/* --- Hero ------------------------------------------------------------------ */
+.hero { padding: 56px 0 28px; }
+.hero h1 { margin: 0; font-size: clamp(32px, 4.4vw, 52px); line-height: 1.08; font-weight: 700; letter-spacing: -0.02em; overflow-wrap: break-word; min-width: 0; max-width: 16ch; }
+.hero p { margin: 14px 0 0; font-size: 18px; color: var(--ink-soft); max-width: 46ch; }
+
+/* --- Application launcher --------------------------------------------------- */
+.launcher { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; margin-top: 36px; }
+.app { display: flex; flex-direction: column; gap: 44px; padding: 22px; min-height: 196px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); color: var(--ink); text-decoration: none; transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease; }
+.app:hover { transform: translateY(-3px); border-color: var(--signal); box-shadow: 0 12px 28px -18px var(--signal-strong); }
+.app:active { transform: translateY(0); }
+.app-icon { display: grid; place-items: center; width: 46px; height: 46px; border-radius: var(--radius-md); background: var(--signal-wash); color: var(--signal); }
+.app:hover .app-icon { background: var(--signal); color: var(--signal-on); }
+.app-name { margin-top: auto; font-weight: 700; font-size: 17px; }
+.app-desc { margin-top: 4px; font-size: 14px; color: var(--ink-soft); }
+.app-open { margin-top: 14px; display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: var(--signal); }
+
+/* --- Section heading (directory and training tabs) ------------------------- */
+.section { padding: 15px 0; border-top: 1px solid var(--line); margin-top: 48px; }
+.section + .section { margin-top: 0; }
+.section-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 22px; }
+.section h2 { margin: 0; font-size: 26px; font-weight: 700; letter-spacing: -0.01em; }
+.section-head p { margin: 4px 0 0; color: var(--ink-soft); font-size: 15px; }
+
+/* --- Directory search field ------------------------------------------------ */
+.search { position: relative; width: min(100%, 340px); }
+.search svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--ink-faint); }
+.search input { width: 100%; height: 44px; padding: 0 14px 0 42px; border: 1px solid var(--line-strong); border-radius: var(--radius-md); background: var(--surface); color: var(--ink); font-size: 15px; outline: none; }
+.search input::placeholder { color: var(--ink-faint); }
+.search input:hover { border-color: var(--ink-faint); }
+
+/* --- Directory table ------------------------------------------------------- */
+.table { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; }
+.table table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.table th { text-align: left; font-weight: 600; font-size: 14px; color: var(--ink-soft); padding: 12px 18px; border-bottom: 1px solid var(--line); }
+.table td { padding: 13px 18px; border-bottom: 1px solid var(--line); }
+.table tr:last-child td { border-bottom: 0; }
+.table tbody tr:hover { background: var(--paper); }
+.ext { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-weight: 600; }
+.copy { display: grid; place-items: center; width: 32px; height: 32px; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--signal); }
+.copy:hover { background: var(--signal-wash); }
+/* Loading, offline and no-results messages. */
+.empty { padding: 36px 18px; text-align: center; color: var(--ink-soft); }
+
+/* --- Training video list --------------------------------------------------- */
+.videos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.video { display: flex; align-items: center; gap: 16px; padding: 18px; text-align: left; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); color: var(--ink); font: inherit; transition: transform 160ms ease, border-color 160ms ease; }
+.video:hover { transform: translateY(-2px); border-color: var(--signal); }
+.video-play { flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--signal); color: var(--signal-on); }
+.video-name { font-weight: 700; }
+.video-desc { font-size: 14px; color: var(--ink-soft); }
+
+/* --- Footer ---------------------------------------------------------------- */
+.foot { padding: 12px; border-top: 1px solid var(--line); color: var(--ink-faint); font-size: 14px; background: var(--paper); }
+
+/* --- Video dialog ---------------------------------------------------------- */
+.modal { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 20px; background: var(--overlay); }
+.modal-box { width: min(100%, 960px); background: var(--surface); border-radius: var(--radius-lg); overflow: hidden; }
+.modal-head { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; border-bottom: 1px solid var(--line); font-weight: 700; }
+.modal-close { display: grid; place-items: center; width: 36px; height: 36px; border: 0; border-radius: 50%; background: var(--paper); color: var(--ink); }
+.modal-close:hover { background: var(--line); }
+.modal video { display: block; width: 100%; max-height: 75vh; background: var(--ink); }
+
+/* --- Keyboard focus -------------------------------------------------------- */
+/* Must stay after `.search input { outline: none }` above, which has equal
+   specificity — move it earlier and the search field loses its focus ring. */
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--signal); outline-offset: 2px; transition: none; }
+
+/* --- Breakpoints for the above --------------------------------------------- */
+@media (max-width: 1024px) { .launcher { grid-template-columns: repeat(3, minmax(0, 1fr)); } .videos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* Narrow screens: single column, and the Designation column is dropped. */
+@media (max-width: 640px) { .launcher, .videos { grid-template-columns: minmax(0, 1fr); } .app { min-height: 0; gap: 20px; } .hero { padding-top: 36px; } .table th:nth-child(2), .table td:nth-child(2) { display: none; } }
+@media (prefers-reduced-motion: reduce) { .app, .video { transition: none; } .app:hover, .video:hover { transform: none; } }

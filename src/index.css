@@ -1,0 +1,35 @@
+/* Global stylesheet entry point — imported once by src/main.tsx.
+ *
+ * hallmark · tone: luxury · genre: modern-minimal · anchor: deep navy
+ * vibe: calm, quick, trustworthy, quietly friendly · audience: hospital staff
+ * job: open an application · type: Plus Jakarta Sans
+ * critique: luxury here is restraint, not ornament: ivory, navy, hairlines,
+ * space; the launcher stays one click; nothing invented.
+ *
+ * ORDER MATTERS. The design was refined in passes, and each pass deliberately
+ * overrides the one before it, so these imports must stay in this sequence:
+ *
+ *   1. tokens        colours, radii, shadows — the values everything else uses
+ *   2. base          element defaults and the fixed-header page shell
+ *   3. components    the starting look of each component
+ *   4. theme-luxury  pass 1 — flat, ruled, ivory-and-navy
+ *   5. tabs          pass 2 — the section tab bar
+ *   6. motion        pass 3 — entrances and hover transitions
+ *   7. fixes         Tailwind clash fix and small-screen corrections
+ *   8. refresh       pass 4 — the current look: depth, colour, per-tile accents
+ *
+ * To change how something looks, start at the bottom of this list and work up:
+ * the last file that mentions a selector is the one that wins.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+@import './styles/tokens.css';
+@import './styles/base.css';
+@import './styles/components.css';
+@import './styles/theme-luxury.css';
+@import './styles/tabs.css';
+@import './styles/motion.css';
+@import './styles/fixes.css';
+@import './styles/refresh.css';

@@ -1,0 +1,28 @@
+/* Workarounds and small-screen corrections. Kept near the end of the import
+   order because each one needs to win over the rules above it. */
+
+/* `.table` collides with Tailwind's built-in `display: table` utility of the
+   same name, so the block display is reasserted here. */
+.table {
+  display: block;
+}
+/* Header row stays put while the directory scrolls. */
+.table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--paper);
+  z-index: 1;
+}
+
+/* Compact header on phones. */
+@media (max-width: 640px) {
+  .bar-inner { height: 64px; }
+  .logo { height: 28px; }
+  .mark { gap: 8px; font-size: 16px; }
+}
+@media (max-width: 480px) {
+  /* Logo only — the wordmark would wrap. */
+  .mark-text { display: none; }
+  .section-head { align-items: start; }
+  .search { width: 100%; }
+}

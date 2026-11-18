@@ -1,0 +1,55 @@
+/* Element defaults and the page shell. */
+
+/* Inside @layer base so Tailwind utility classes still override these.
+   Preflight already handles box-sizing, margins and form-control fonts. */
+@layer base {
+  html,
+  body {
+    overflow-x: clip;
+    height: 100%;
+  }
+  body {
+    margin: 0;
+    min-width: 320px;
+    overflow: hidden;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  button {
+    cursor: pointer;
+  }
+}
+
+/* App shell: the header and footer are fixed chrome; everything between them
+   (ticker, hero, tabs, main) scrolls as one region.
+   This relies on .bar and .foot being direct children of #root — see App.tsx. */
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+#root > .bar,
+#root > .foot {
+  flex: none;
+}
+.scroll-area {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+main > .apps-panel,
+main > .section {
+  display: flex;
+  flex-direction: column;
+}
+.section-head { flex: none; }
+
+/* Centred content column, used by the header, hero, main and footer. */
+.wrap { width: min(100% - 40px, var(--container)); margin-inline: auto; }

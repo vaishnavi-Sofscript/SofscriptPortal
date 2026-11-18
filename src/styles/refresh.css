@@ -1,0 +1,98 @@
+/* Refinement pass 4 — the current look: depth, colour and polish.
+   Loaded last, so these rules win. The radius and shadow tokens it relies on
+   live in tokens.css.
+
+   This is where to look first when changing how the portal looks today. */
+
+.bar { box-shadow: var(--shadow-sm); }
+
+/* --- Ticker ---------------------------------------------------------------- */
+/* Continuous marquee of the app names, reusing the real launcher data.
+   The track holds two copies of the list and slides by -50%, so the loop is
+   seamless; it pauses on hover. */
+.ticker { overflow: hidden; background: var(--signal); -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent); }
+.ticker-track { display: flex; width: max-content; gap: 48px; padding: 10px 24px; animation: marquee 28s linear infinite; }
+.ticker:hover .ticker-track { animation-play-state: paused; }
+.ticker-item { display: flex; align-items: center; gap: 8px; white-space: nowrap; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; color: var(--signal-on); opacity: 0.88; }
+.ticker-item svg { color: var(--accent); flex: none; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* --- Hero ------------------------------------------------------------------ */
+.hero { position: relative; overflow: hidden; }
+/* Soft brass glow drifting behind the heading. */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -140px;
+  right: -100px;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(168, 135, 90, 0.16), transparent 70%);
+  pointer-events: none;
+  animation: drift 12s ease-in-out infinite alternate;
+}
+@keyframes drift { from { transform: translate(0, 0) scale(1); } to { transform: translate(-18px, 14px) scale(1.08); } }
+/* "Quick access" eyebrow, with a short rule before it. */
+.kicker { position: relative; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 14px; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.kicker::before { content: ''; width: 18px; height: 2px; background: var(--accent); border-radius: 2px; }
+/* Lift the text above the glow. */
+.hero h1, .hero p { position: relative; }
+
+/* --- Tabs become pills ----------------------------------------------------- */
+.tabs-bar { border-bottom: 0; }
+.tabs { display: inline-flex; gap: 4px; padding: 6px; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; max-width: 100%; margin-top: 18px; box-shadow: var(--shadow-sm); scrollbar-width: none; }
+.tabs::-webkit-scrollbar { display: none; }
+.tab { padding: 10px 18px; border-radius: 999px; }
+.tab::after { display: none; } /* underline replaced by the filled pill */
+.tab[aria-selected='true'] { background: var(--signal); color: var(--signal-on); }
+.tab:hover:not([aria-selected='true']) { background: var(--paper); color: var(--ink); }
+
+/* --- Launcher tiles become cards again, each with its own hover colour ----- */
+.launcher { gap: 18px; margin-top: 40px; border: 0; }
+.app, .app + .app { border: 1px solid var(--line); }
+.app { border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow-sm); padding: 26px; }
+.app:hover { background: var(--app-tint); border-color: var(--app-tint); color: #fff; box-shadow: var(--shadow-md); transform: translateY(-4px); z-index: 1; }
+.app-icon { border: 0; background: var(--app-tint-wash); color: var(--app-tint); }
+.app:hover .app-icon { background: rgb(255 255 255 / 0.2); color: #fff; }
+.app:hover .app-name { color: #fff; }
+.app:hover .app-desc { color: rgb(255 255 255 / 0.75); }
+.app-open { color: var(--app-tint); }
+.app:hover .app-open { color: #fff; }
+/* Per-tile accent, assigned by position — matches the order of APPLICATIONS in
+   data/applications.tsx. Add a pair here if a sixth application is added. */
+.app:nth-child(1) { --app-tint: #b6423f; --app-tint-wash: rgb(182 66 63 / 0.12); }
+.app:nth-child(2) { --app-tint: #95404b; --app-tint-wash: rgb(149 64 75 / 0.12); }
+.app:nth-child(3) { --app-tint: #5f3c5d; --app-tint-wash: rgb(95 60 93 / 0.12); }
+.app:nth-child(4) { --app-tint: #433965; --app-tint-wash: rgb(67 57 101 / 0.12); }
+.app:nth-child(5) { --app-tint: #793f55; --app-tint-wash: rgb(121 63 85 / 0.12); }
+
+/* --- Directory table ------------------------------------------------------- */
+.table { border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); }
+.table tbody tr:nth-child(even) { background: rgb(15 27 51 / 0.015); }
+
+/* --- Video rows become cards ----------------------------------------------- */
+.videos { gap: 16px; border-top: 0; }
+.video { border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); }
+.video:hover { box-shadow: var(--shadow-md); background: var(--surface); }
+
+/* --- Search field gets its box back --------------------------------------- */
+.search input { border-radius: var(--radius-md); border-width: 1px; padding-left: 42px; }
+.search svg { left: 14px; }
+
+.modal-box { box-shadow: var(--shadow-lg); }
+
+.foot { padding: 18px 0; }
+.foot-inner { display: flex; align-items: center; gap: 10px; font-weight: 500; }
+.foot-mark { height: 22px; width: auto; border-radius: 5px; }
+
+/* --- Scrollbar for the main scroll region ---------------------------------- */
+.scroll-area { scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
+.scroll-area::-webkit-scrollbar { width: 8px; }
+.scroll-area::-webkit-scrollbar-track { background: transparent; }
+.scroll-area::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 999px; }
+.scroll-area::-webkit-scrollbar-thumb:hover { background: var(--ink-faint); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track, .hero::before { animation: none; }
+}
